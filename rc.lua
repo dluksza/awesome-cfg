@@ -81,24 +81,6 @@ for s = 1, screen.count() do
 end
 -- }}}
 
--- {{{ Menu
--- Create a laucher widget and a main menu
--- myawesomemenu = {
---    { "manual", terminal .. " -e man awesome" },
---    { "edit config", editor_cmd .. " " .. awful.util.getdir("config") .. "/rc.lua" },
---    { "restart", awesome.restart },
---    { "quit", awesome.quit }
---  }
-
--- mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
---                                     { "open terminal", terminal }
---                                  }
---                         })
-
--- mylauncher = awful.widget.launcher({ image = image(beautiful.awesome_icon),
---                                      menu = mymainmenu })
--- }}}
-
 -- {{{ Wibox
 -- Create a textclock widget
 mytextclock = awful.widget.textclock({ align = "right" }, " %a %b %d, %H:%M:%S", 1 )
@@ -206,7 +188,6 @@ for s = 1, screen.count() do
     -- Add widgets to the wibox - order matters
     mywibox[s].widgets = {
         {
---            mylauncher,
             mytaglist[s],
             mypromptbox[s],
             layout = awful.widget.layout.horizontal.leftright
@@ -320,7 +301,6 @@ for i = 1, keynumber do
     globalkeys = awful.util.table.join(globalkeys,
         awful.key({ modkey }, "F" .. i,
                   function ()
---                        local screen = mouse.screen
                         for screen = 1, screen.count() do
 	                        if tags[screen][i] then
         	                    awful.tag.viewonly(tags[screen][i])
