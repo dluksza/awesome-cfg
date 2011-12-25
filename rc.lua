@@ -334,12 +334,12 @@ for i = 1, keynumber do
                           awful.tag.viewtoggle(tags[screen][i])
                       end
                   end),
-        awful.key({ modkey, "Shift" }, "F" .. i,
-                  function ()
-                      if client.focus and tags[client.focus.screen][i] then
-                          awful.client.movetotag(tags[client.focus.screen][i])
-                      end
-                  end),
+--        awful.key({ modkey, "Shift" }, "F" .. i,
+--                  function ()
+--                      if client.focus and tags[client.focus.screen][i] then
+--                          awful.client.movetotag(tags[client.focus.screen][i])
+--                      end
+--                 end),
         awful.key({ modkey, "Control", "Shift" }, "F" .. i,
                   function ()
                       if client.focus and tags[client.focus.screen][i] then
@@ -377,23 +377,21 @@ awful.rules.rules = {
     { rule = { class = "wicd-client.py" },
       properties = { floating = true } },
     { rule = { class = "Tkabber" },
---      properties = { tag = tags[1][1] },
       callback = function(c)
                if screen.count() == 1 then
-	           c:tags(tags[1][1])
+	           c:tags({ tags[1][1] })
 	       else
-		   c:tags(tags[2][1])
+		   c:tags({ tags[2][1] })
 	       end
        end },
     { rule = { class = "Opera" },
       properties = { tag = tags[1][2] } },
     { rule = { class = "Firefox" },
---      properties = { tag = tags[1][2] },
       callback = function(c)
                if screen.count() == 1 then
-	           c:tags(tags[1][2])
+	           c:tags({ tags[1][2] })
 	       else
-	           c:tags(tags[2][2])
+	           c:tags({ tags[2][2] })
 	       end
        end},
     { rule = { class = "Thunderbird-bin" },
@@ -412,14 +410,11 @@ awful.rules.rules = {
       		   },
       callback = function(c)
 	      if screen.count() == 1 then
-		  c:tags(tags[1][3])
+		  c:tags({ tags[1][3] })
 	      else
-		  c:tags(tags[2][3])
+		  c:tags({ tags[2][3] })
 	      end 
       end },
-    -- Set Firefox to always map on tags number 2 of screen 1.
-    -- { rule = { class = "Firefox" },
-    --   properties = { tag = tags[1][2] } },
 }
 -- }}}
 
